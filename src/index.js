@@ -8,20 +8,6 @@ app.use(express.json());
 
 const repositories = [];
 
-function checkIfRepositoryExist(request, response, next) {
-  const { id } = request.headers;
-
-  const repository = repositories.find(repository => repository.id === id);
-
-  if(!repository) {
-    return response.status(404).json({ error: "repositório não existe!"})
-  }
-
-  request.repository = repositoryExist;
-
-  return next();
-}
-
 app.get("/repositories", (request, response) => {
   return response.status(200).json(repositories);
 });
